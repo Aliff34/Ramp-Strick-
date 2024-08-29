@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <urlset
+
       xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
@@ -9,42 +11,67 @@
 
 <url>
   <loc>https://aliff34.github.io/Ramp-Strick-/</loc>
-  <lastmod>2024-08-29T08:53:35+00:00</lastmod>
+  <lastmod>2024-08-29T19:23:41+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
+  <loc>https://aliff34.github.io/Ramp-Strick-/home/about.html</loc>
+  <lastmod>2024-08-29T19:23:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
   <loc>https://aliff34.github.io/Ramp-Strick-/home/privacyraml.html</loc>
-  <lastmod>2024-08-29T08:53:35+00:00</lastmod>
+  <lastmod>2024-08-29T19:23:41+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://aliff34.github.io/Ramp-Strick-/home/contact.html</loc>
-  <lastmod>2024-08-29T08:53:35+00:00</lastmod>
+  <lastmod>2024-08-29T19:23:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://aliff34.github.io/Ramp-Strick-/news/rocokingdom.html</loc>
+  <lastmod>2024-08-29T19:23:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://aliff34.github.io/Ramp-Strick-/news/ffindiaunban.html</loc>
+  <lastmod>2024-08-29T19:23:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://aliff34.github.io/Ramp-Strick-/news/Roblox1.html</loc>
+  <lastmod>2024-08-29T19:23:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://aliff34.github.io/Ramp-Strick-/news/Pokemonunite.html</loc>
+  <lastmod>2024-08-29T19:23:41+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://aliff34.github.io/Ramp-Strick-/news/pubgnews.html</loc>
-  <lastmod>2024-08-29T08:53:35+00:00</lastmod>
+  <lastmod>2024-08-29T19:23:41+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://aliff34.github.io/Ramp-Strick-/news/battleguys.html</loc>
-  <lastmod>2024-08-29T08:53:35+00:00</lastmod>
+  <lastmod>2024-08-29T19:23:41+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://aliff34.github.io/Ramp-Strick-/news/blacksmith.html</loc>
-  <lastmod>2024-08-29T08:53:35+00:00</lastmod>
+  <lastmod>2024-08-29T19:23:41+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://aliff34.github.io/Ramp-Strick-/news/Fall%20Guys%20MobilevsStumble%20Guys.html</loc>
-  <lastmod>2024-08-29T08:53:35+00:00</lastmod>
+  <lastmod>2024-08-29T19:23:41+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://aliff34.github.io/Ramp-Strick-/news/populargames2024list.html</loc>
-  <lastmod>2024-08-29T08:53:35+00:00</lastmod>
+  <lastmod>2024-08-29T19:23:41+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 
