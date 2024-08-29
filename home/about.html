@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramp Strick</title>
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Loading screen styles */
+        #loading-screen {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            background-color: #121212;
+            color: #ffffff;
+            font-size: 2.5rem;
+            font-family: 'Arial', sans-serif;
+            z-index: 9999;
+        }
+
+        /* Cool text effect with animated background */
+        .loading-text {
+            position: relative;
+            font-weight: bold;
+            animation: flicker 1s infinite alternate;
+        }
+
+        /* Fire, water, and electric effect */
+        .loading-text::before {
+            content: 'Ramp Strick';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('/page home gifs/e468b2fbcd58c477fbcd69b2dcc009d2_w200.gif'); /* Replace with your GIF URL */
+            background-size: cover;
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: moveEffect 3s infinite;
+        }
+
+        /* Animation for effect movement */
+        @keyframes moveEffect {
+            0% { background-position: 0 0; }
+            100% { background-position: 100% 100%; }
+        }
+
+        /* Flicker animation */
+        @keyframes flicker {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        /* Main content styles */
+        .main-content {
+            display: none;
+            padding: 20px;
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .main-content h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .main-content p {
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .main-content .about-section {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+
+        .main-content .about-section h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .main-content .about-section p {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading screen -->
+    <div id="loading-screen"><span class="loading-text">Ramp Strick</span></div>
+
+    <!-- Main content -->
+    <div class="main-content">
+        <h1>Welcome to Ramp Strick</h1>
+        <div class="about-section">
+            <h2>About Ramp Strick</h2>
+            <p>Ramp Strick is your go-to source for the latest and most accurate gaming news. Our website provides up-to-date information, reviews, and insights about your favorite games, ensuring you never miss out on important updates and trends in the gaming world.</p>
+            <p>With a team of passionate gamers and expert writers, we bring you comprehensive coverage of game releases, patches, eSports events, and industry developments. Our goal is to create a vibrant community where gamers can stay informed, share opinions, and connect with like-minded enthusiasts.</p>
+            <p>Whether you're a casual player or a hardcore gamer, Ramp Strick offers something for everyone. Explore our website to discover news articles, in-depth analysis, and a range of multimedia content designed to enhance your gaming experience.</p>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript to handle the loading screen and display content after loading
+        window.addEventListener('load', function() {
+            const loadingScreen = document.getElementById('loading-screen');
+            const mainContent = document.querySelector('.main-content');
+            const aboutSection = document.querySelector('.about-section');
+
+            // Show the main content after the loading animation ends
+            setTimeout(function() {
+                loadingScreen.style.display = 'none';
+                mainContent.style.display = 'block';
+                mainContent.style.opacity = '1';  // Fade in the main content
+                setTimeout(() => {
+                    aboutSection.style.opacity = '1';
+                    aboutSection.style.transform = 'translateY(0)';
+                }, 50);  // Delay to ensure the content is fully loaded
+            }, 3000); // Adjust this duration to match your animation length
+        });
+    </script>
+</body>
+</html>
