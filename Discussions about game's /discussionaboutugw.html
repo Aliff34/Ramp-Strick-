@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Battle Guys Discussions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #e0e0e0;
+            overflow-x: hidden;
+        }
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #1e1e1e;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+        h1 {
+            text-align: center;
+            color: #ff4500;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+        .post {
+            border-bottom: 1px solid #333;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            background: #2c2c2c;
+            transition: background 0.3s;
+        }
+        .post:hover {
+            background: #3c3c3c;
+        }
+        .name {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #ff4500;
+        }
+        .description {
+            font-size: 1em;
+            margin-top: 5px;
+            color: #e0e0e0;
+        }
+        .comments {
+            margin-top: 10px;
+        }
+        .comment {
+            border-top: 1px solid #333;
+            padding: 10px;
+            margin-top: 5px;
+            background: #1e1e1e;
+            border-radius: 5px;
+        }
+        .comment .commenter {
+            font-weight: bold;
+            color: #ff4500;
+        }
+        .comment .comment-text {
+            margin-top: 5px;
+            color: #e0e0e0;
+        }
+        .floating-button {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            background-color: #ff4500;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+            z-index: 1000;
+        }
+        .floating-button:hover {
+            background-color: #e63946;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+        }
+        .modal-header {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #ff4500;
+        }
+        .modal-body {
+            font-size: 1em;
+            color: #e0e0e0;
+        }
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.5em;
+            color: #ff4500;
+            cursor: pointer;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+            .floating-button {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Battle Guys Discussions</h1>
+        <div id="discussionContainer">
+            <!-- JavaScript will populate this section -->
+        </div>
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <div class="modal-header">Beta Notice</div>
+            <div class="modal-body">
+                <p>Thank you for your interest! The feature is currently in beta testing and only a few people can use it now. It will be available to everyone soon!</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="floating-button" onclick="openModal()">+</div>
+
+    <script>
+        const discussions = [
+            { name: "Alice", description: "Battle Guys has just soft-launched in a few countries! Excited to try out the new gameplay features.", comments: [
+                { commenter: "User1", comment: "That's awesome! I hope it comes to my country soon." },
+                { commenter: "User2", comment: "I've been playing it since the launch. The new mechanics are fun!" }
+            ]},
+            { name: "Bob", description: "The new update is coming soon with custom party features. Can't wait to host private matches with friends!", comments: [
+                { commenter: "User3", comment: "Custom parties sound like a blast! Looking forward to it." }
+            ]},
+            { name: "Charlie", description: "I've been enjoying Battle Guys since the soft launch. The graphics are top-notch!", comments: [
+                { commenter: "User4", comment: "I agree, the graphics are impressive for a mobile game." }
+            ]},
+            { name: "Daisy", description: "The new update will bring so many customization options. It's going to be great!", comments: [
+                { commenter: "User5", comment: "Customization is key! Can't wait to see what's in store." }
+            ]},
+            { name: "Ethan", description: "I hope Battle Guys releases in more countries soon. The gameplay looks so fun!", comments: [
+                { commenter: "User6", comment: "Yes, fingers crossed! I want to play it too." }
+            ]},
+            // More discussions about Battle Guys and its updates
+            { name: "Fiona", description: "The soft launch feedback has been positive so far. Excited for the global release!", comments: [
+                { commenter: "User7", comment: "Global release can't come soon enough!" }
+            ]},
+            { name: "George", description: "Battle Guys' new update is going to change the game. Can't wait to see the community's reactions!", comments: [
+                { commenter: "User8", comment: "The community is going to love the new features." }
+            ]},
+            { name: "Hannah", description: "I love how Battle Guys keeps adding new content. It keeps the game fresh and exciting.", comments: [
+                { commenter: "User9", comment: "New content is always a great way to keep players engaged." }
+            ]},
+            { name: "Ian", description: "Custom party features will make Battle Guys a must-play with friends. So hyped!", comments: [
+                { commenter: "User10", comment: "Same here! Private matches will be a game-changer." }
+            ]},
+            { name: "Jack", description: "The game's balance feels just right after the recent tweaks. Enjoying it a lot!", comments: [
+                { commenter: "User11", comment: "Balance is key. Glad to hear they're getting it right." }
+            ]}
+        ];
+
+        const discussionContainer = document.getElementById('discussionContainer');
+
+        discussions.forEach(discussion => {
+            const postDiv = document.createElement('div');
+            postDiv.className = 'post';
+
+            const nameElement = document.createElement('div');
+            nameElement.className = 'name';
+            nameElement.innerText = discussion.name;
+
+            const descriptionElement = document.createElement('div');
+            descriptionElement.className = 'description';
+            descriptionElement.innerText = discussion.description;
+
+            const commentsElement = document.createElement('div');
+            commentsElement.className = 'comments';
+
+            discussion.comments.forEach(comment => {
+                const commentDiv = document.createElement('div');
+                commentDiv.className = 'comment';
+
+                const commenterElement = document.createElement('div');
+                commenterElement.className = 'commenter';
+                commenterElement.innerText = comment.commenter;
+
+                const commentTextElement = document.createElement('div');
+                commentTextElement.className = 'comment-text';
+                commentTextElement.innerText = comment.comment;
+
+                commentDiv.appendChild(commenterElement);
+                commentDiv.appendChild(commentTextElement);
+
+                commentsElement.appendChild(commentDiv);
+            });
+
+            postDiv.appendChild(nameElement);
+            postDiv.appendChild(descriptionElement);
+            postDiv.appendChild(commentsElement);
+
+            discussionContainer.appendChild(postDiv);
+        });
+
+        function openModal() {
+            document.getElementById('modal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
