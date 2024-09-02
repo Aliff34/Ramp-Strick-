@@ -1,0 +1,125 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+}
+
+header {
+    margin-bottom: 20px;
+}
+
+h1 {
+    color: #333;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 600px;
+    width: 100%;
+}
+
+input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 10px;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    margin: 5px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+#loading {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #007bff;
+    animation: fadeInOut 1s infinite;
+}
+
+.hidden {
+    display: none;
+}
+
+#tags {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #333;
+}
+
+footer {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+}
+
+footer h2 {
+    margin-bottom: 10px;
+}
+
+footer p {
+    margin-bottom: 5px;
+}
+
+@media (max-width: 600px) {
+    input[type="text"] {
+        width: 90%;
+    }
+    
+    button {
+        width: 90%;
+    }
+    
+    #loading, #tags {
+        font-size: 14px;
+    }
+}
+
+/* Keyframes for loading animation */
+@keyframes fadeInOut {
+    0%, 100% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+}

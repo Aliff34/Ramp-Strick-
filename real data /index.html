@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Leaks</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #dataOutput {
+            margin-top: 20px;
+        }
+        .post {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+        .post strong {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Submit Game Leaks</h1>
+    <form id="dataForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required></textarea><br><br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <div id="dataOutput">
+        <h2>Submitted Leaks:</h2>
+    </div>
+
+    <script>
+        // URL of the Google Apps Script web app
+        const submitUrl = 'https://script.google.com/macros/s/AKfycbw8oQhVfqPJiutjY5cVYJ913ELWYympU6lM64UMYyON0LSq2Ck3nfhoHn3Lh2Mac3I/exec';
+        const fetchUrl = 'https://script.google.com/macros/s/AKfycbw8oQhVfqPJiutjY5cVYJ913ELWYympU6lM64UMYyON0LSq2Ck3nfhoHn3Lh2Mac3I/exec'; // Same URL used for fetching data
+
+        // Handle form submission
+        document.getElementById('dataForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const description = document.getElementById('description').value;
+
+            fetch(submitUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username: username, description: description })
+            })
+            .then(response => response.text())
+            .then(() => {
+                alert('Data submitted successfully!');
+                document.getElementById('dataForm').reset();
+                loadData(); // Reload data after submission
+            })
+            .catch(error => console.error('Error:', error));
+        });
+
+        // Function to load and display data
+        function loadData() {
+            fetch(fetchUrl)
+                .then(response => response.json())
+                .then(data => {
+                    const output = document.getElementById('dataOutput');
+                    output.innerHTML = '<h2>Submitted Leaks:</h2>';
+
+                    data.forEach(row => {
+                        const username = row[0];
+                        const description = row[1];
+                        output.innerHTML += `<div class="post"><strong>${username}:</strong> ${description}</div>`;
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        // Load data when the page loads
+        window.onload = loadData;
+    </script>
+</body>
+</html>

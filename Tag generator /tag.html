@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramp Strick Tag Generator</title>
+    <link rel="stylesheet" href="tag.css">
+</head>
+<body>
+    <header>
+        <h1>Ramp Strick Tag Generator</h1>
+    </header>
+    <main>
+        <input type="text" id="titleInput" placeholder="Enter a title">
+        <button id="searchButton">Generate Tags</button>
+        <div id="loading" class="hidden">Loading...</div>
+        <div id="tags"></div>
+        <button id="copyButton" class="hidden">Copy Tags</button>
+    </main>
+    <footer>
+        <h2>How to Use</h2>
+        <p>1. Enter a title in the input field.</p>
+        <p>2. Click the "Generate Tags" button.</p>
+        <p>3. Wait for the tags to be generated.</p>
+        <p>4. Click the "Copy Tags" button to copy the generated tags to your clipboard.</p>
+    </footer>
+    <script src="tag.js"></script>
+</body>
+</html>
