@@ -1,86 +1,97 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Leaks</title>
+    <title>Ramp Strick Social media </title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        #dataOutput {
-            margin-top: 20px;
-        }
-        .post {
-            border-bottom: 1px solid #ddd;
-            padding: 10px 0;
-        }
-        .post strong {
-            color: #333;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        color: #333;
+      }
+      .container {
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 90%;
+        max-width: 500px;
+        box-sizing: border-box;
+      }
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #007bff;
+      }
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+      }
+      input, textarea {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+      button {
+        background-color: #28a745;
+        color: #fff;
+        border: none;
+        padding: 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      button:hover {
+        background-color: #218838;
+      }
     </style>
 </head>
 <body>
-    <h1>Submit Game Leaks</h1>
-    <form id="dataForm">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required><br><br>
-        <label for="description">Description:</label>
-        <textarea id="description" name="description" required></textarea><br><br>
-        <button type="submit">Submit</button>
-    </form>
-
-    <div id="dataOutput">
-        <h2>Submitted Leaks:</h2>
+    <div class="container">
+        <h1>upload your comment</h1>
+        <form onsubmit="event.preventDefault(); submitForm();">
+            <label for="username">Username:</label>
+            <input type="text" id="username" required>
+            <label for="description">Description:</label>
+            <textarea id="description" required></textarea>
+            <button type="submit">Submit</button>
+        </form>
+        <div id="success-message" style="display: none; text-align: center; margin-top: 20px;">
+            <h2>Submission Successful!</h2>
+            <p>Your data has been submitted successfully.</p>
+        </div>
     </div>
-
     <script>
-        // URL of the Google Apps Script web app
-        const submitUrl = 'https://script.google.com/macros/s/AKfycbw8oQhVfqPJiutjY5cVYJ913ELWYympU6lM64UMYyON0LSq2Ck3nfhoHn3Lh2Mac3I/exec';
-        const fetchUrl = 'https://script.google.com/macros/s/AKfycbw8oQhVfqPJiutjY5cVYJ913ELWYympU6lM64UMYyON0LSq2Ck3nfhoHn3Lh2Mac3I/exec'; // Same URL used for fetching data
-
-        // Handle form submission
-        document.getElementById('dataForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            const username = document.getElementById('username').value;
-            const description = document.getElementById('description').value;
-
-            fetch(submitUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ username: username, description: description })
-            })
-            .then(response => response.text())
-            .then(() => {
-                alert('Data submitted successfully!');
-                document.getElementById('dataForm').reset();
-                loadData(); // Reload data after submission
-            })
-            .catch(error => console.error('Error:', error));
+      function submitForm() {
+        const username = document.getElementById('username').value;
+        const description = document.getElementById('description').value;
+        
+        fetch('https://sheetdb.io/api/v1/g2dnq4iv46tiw', { // Replace with your SheetDB API URL
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ data: { Username: username, Description: description } })
+        })
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('success-message').style.display = 'block';
+          setTimeout(() => {
+            window.location.href = 'views.html'; // Redirect to views page
+          }, 1000); // Redirect after 2 seconds
+        })
+        .catch(error => {
+          console.error('Error:', error);
         });
-
-        // Function to load and display data
-        function loadData() {
-            fetch(fetchUrl)
-                .then(response => response.json())
-                .then(data => {
-                    const output = document.getElementById('dataOutput');
-                    output.innerHTML = '<h2>Submitted Leaks:</h2>';
-
-                    data.forEach(row => {
-                        const username = row[0];
-                        const description = row[1];
-                        output.innerHTML += `<div class="post"><strong>${username}:</strong> ${description}</div>`;
-                    });
-                })
-                .catch(error => console.error('Error:', error));
-        }
-
-        // Load data when the page loads
-        window.onload = loadData;
+      }
     </script>
 </body>
 </html>
