@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Bot</title>
+    <style>
+        /* Basic styling for the chatbot */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        #chatbot {
+            display: flex;
+            flex-direction: column;
+            max-width: 600px;
+            width: 100%;
+            height: 80vh;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        #chatbox {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            background-color: #e5e5e5;
+            border-bottom: 1px solid #ccc;
+            position: relative;
+        }
+        #userInputContainer {
+            display: flex;
+            border-top: 1px solid #ddd;
+            background-color: #ffffff;
+        }
+        #userInput {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 0;
+            outline: none;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px;
+            border: none;
+            background-color: #007bff;
+            color: #ffffff;
+            cursor: pointer;
+            border-radius: 0;
+            transition: background-color 0.3s, transform 0.2s;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+        .message {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 20px;
+            max-width: 80%;
+            word-wrap: break-word;
+            animation: fadeIn 0.5s ease-in-out;
+            position: relative;
+        }
+        .user-message {
+            background-color: #007bff;
+            color: #ffffff;
+            align-self: flex-end;
+            border-top-right-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+        .bot-message {
+            background-color: #ffffff;
+            color: #333333;
+            align-self: flex-start;
+            border-top-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .typing-indicator div {
+            width: 10px;
+            height: 10px;
+            margin: 0 2px;
+            background-color: #007bff;
+            border-radius: 50%;
+            animation: typing 1s infinite;
+        }
+        .typing-indicator div:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        .typing-indicator div:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        @keyframes typing {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @media (max-width: 768px) {
+            #chatbot {
+                height: 90vh;
+            }
+            button {
+                padding: 8px;
+                font-size: 14px;
+            }
+            #userInput {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="chatbot">
+        <!-- Chatbox to display conversation -->
+        <div id="chatbox"></div>
+        <!-- Input field and button container -->
+        <div id="userInputContainer">
+            <input type="text" id="userInput" placeholder="Ask your question..." />
+            <button onclick="fetchAnswer()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        async function fetchAnswer() {
+            const userQuestion = document.getElementById('userInput').value.trim(); // Get and trim user input
+            if (!userQuestion) return; // Exit if input is empty
+
+            // Display user message
+            document.getElementById('chatbox').innerHTML += `
+                <div class="message user-message">
+                    <strong>You:</strong> ${userQuestion}
+                </div>
+                <div id="typing-indicator" class="typing-indicator">
+                    <div></div><div></div><div></div>
+                </div>
+            `;
+
+            // Clear the input field
+            document.getElementById('userInput').value = '';
+
+            // Auto-scroll to the bottom
+            document.getElementById('chatbox').scrollTop = document.getElementById('chatbox').scrollHeight;
+
+            // Simulate bot typing
+            setTimeout(async () => {
+                const sheetUrl = 'https://api.sheety.co/1f153233061a225ed7544a47be14d17d/sheet3/sheet1'; // Your Sheety API URL
+
+                try {
+                    const response = await fetch(sheetUrl); // Fetch data from the API
+                    const data = await response.json(); // Parse the response as JSON
+                    
+                    // Assuming the data is in the format { sheet1: [{ question: "Question", answer: "Answer" }, ...] }
+                    const entries = data.sheet1; 
+
+                    let answerFound = false; // To track if we found a matching question
+                    
+                    // Loop through the data to find a matching question
+                    for (let entry of entries) {
+                        if (entry.question.toLowerCase() === userQuestion.toLowerCase()) {
+                            document.getElementById('typing-indicator').outerHTML = `
+                                <div class="message bot-message">
+                                    <strong>Bot:</strong> ${entry.answer}
+                                </div>
+                            `;
+                            answerFound = true;
+                            break;
+                        }
+                    }
+
+                    // If no answer found, give a default response
+                    if (!answerFound) {
+                        document.getElementById('typing-indicator').outerHTML = `
+                            <div class="message bot-message">
+                                <strong>Bot:</strong> I'm not sure about that. Please check our FAQ page for more information.
+                            </div>
+                        `;
+                    }
+
+                    // Auto-scroll to the bottom
+                    document.getElementById('chatbox').scrollTop = document.getElementById('chatbox').scrollHeight;
+                } catch (error) {
+                    console.error('Error fetching data:', error);
+                    document.getElementById('typing-indicator').outerHTML = `
+                        <div class="message bot-message">
+                            <strong>Bot:</strong> There was an error fetching data. Please try again later.
+                        </div>
+                    `;
+                }
+            }, 1000); // Simulate a 1.5-second delay for typing effect
+        }
+    </script>
+</body>
+</html>
