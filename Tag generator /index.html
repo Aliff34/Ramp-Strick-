@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramp Strick - Stylish Text Generator</title>
+    <meta name="description" content="Ramp Strick is your go-to stylish text generator. Enter your text, select a font style, and copy your stylish text for social media, messages, and more.">
+
+    <!-- Open Graph Meta Tags for SEO -->
+    <meta property="og:title" content="Ramp Strick - Stylish Text Generator">
+    <meta property="og:description" content="Enter your text, choose a font style, and generate stylish text to enhance your messages and social media posts.">
+    <meta property="og:image" content="images/og-image.png">
+    <meta property="og:url" content="https://www.rampstrick.com">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ramp Strick - Stylish Text Generator">
+    <meta name="twitter:description" content="Generate stylish text easily for your social media, messages, and more.">
+    <meta name="twitter:image" content="images/twitter-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/faviicon.jpg" type="image/x-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto&family=Pacifico&family=Montserrat&family=Open+Sans&display=swap" rel="stylesheet">
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <img src="/faviicon.jpg" alt="Ramp Strick Logo" class="logo">
+            <h1>Ramp Strick</h1>
+            <p>Your Stylish Text Generator</p>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="input-section">
+                <textarea id="userInput" placeholder="Enter your text here..."></textarea>
+                <select id="fontSelector">
+                    <option value="Bold">Bold</option>
+                    <option value="Italic">Italic</option>
+                    <option value="BoldItalic">Bold Italic</option>
+                    <option value="Script">Script</option>
+                    <option value="BoldScript">Bold Script</option>
+                    <option value="Fraktur">Fraktur</option>
+                    <option value="DoubleStruck">Double-struck</option>
+                    <option value="SansSerif">Sans-serif</option>
+                    <option value="SansBold">Sans-bold</option>
+                    <option value="SansItalic">Sans-italic</option>
+                    <option value="SansBoldItalic">Sans-bold italic</option>
+                </select>
+                <button id="generateBtn">Generate Stylish Text</button>
+            </div>
+
+            <div class="output-section">
+                <h2>Your Stylish Text:</h2>
+                <div id="styledTextContainer">
+                    <p>Your stylish text will appear here...</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Ramp Strick. All rights reserved.</p>
+            <nav>
+                <a href="#">Home</a> |
+                <a href="#">About</a> |
+                <a href="#">Contact</a>
+            </nav>
+        </div>
+    </footer>
+
+    <!-- External JavaScript -->
+    <script src="scripts.js"></script>
+</body>
+</html>

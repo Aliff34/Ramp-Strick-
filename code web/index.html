@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramp Strick Code Editor</title>
+    <meta name="description" content="Ramp Strick Code Editor allows you to write and run HTML, CSS, and JavaScript code directly in your browser. Save your code locally and toggle output easily.">
+    <meta name="keywords" content="Ramp Strick, code editor, HTML, CSS, JavaScript, local storage, web development, online coding">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="/faviicon.jpg" type="image/x-icon">
+</head>
+<body>
+    <div class="container">
+        <h1>Ramp Strick Code Editor</h1>
+        <div class="tabs">
+            <button class="tab-button active" data-tab="html">HTML</button>
+            <button class="tab-button" data-tab="css">CSS</button>
+            <button class="tab-button" data-tab="js">JavaScript</button>
+        </div>
+        <div class="editor">
+            <textarea id="html-code" class="editor-textarea active" placeholder="Write your HTML code here..."></textarea>
+            <textarea id="css-code" class="editor-textarea" placeholder="Write your CSS code here..."></textarea>
+            <textarea id="js-code" class="editor-textarea" placeholder="Write your JavaScript code here..."></textarea>
+        </div>
+        <button id="run-btn">Run Code</button>
+        <button id="toggle-output-btn">Show Output</button>
+        <iframe id="output" class="output" style="display: none;"></iframe>
+        <button id="save-btn">Save Code</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
